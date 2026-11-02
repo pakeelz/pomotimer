@@ -11,7 +11,7 @@ async fn main() {
 
     let mut app = App::new(cli.timer, cli.breaks);
     let mut terminal = ratatui::init();
-    app.run(&mut terminal).await;
+    if let Ok(_) = app.run(&mut terminal).await {}
 
     ratatui::restore();
 }

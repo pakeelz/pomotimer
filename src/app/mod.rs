@@ -35,8 +35,7 @@ impl App {
         }
     }
 
-    #[allow(unused)]
-    pub async fn run(&mut self, terminal: &mut DefaultTerminal) {
+    pub async fn run(&mut self, terminal: &mut DefaultTerminal) -> anyhow::Result<()> {
         let (timer_first, breaks_first) = (self.timer, self.breaks);
         let mut reader = EventStream::new();
         let mut interval = tokio::time::interval(Duration::from_secs(1));
@@ -44,7 +43,7 @@ impl App {
         interval.tick().await;
 
         while !self.exit {
-            self.render_ptmr(terminal);
+            self.render_ptmr(terminal)?;
             // self.render_test(terminal);
 
             tokio::select! {
@@ -58,6 +57,7 @@ impl App {
                 }
             }
         }
+        anyhow::Ok(())
     }
 }
 
