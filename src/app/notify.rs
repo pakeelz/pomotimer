@@ -7,13 +7,8 @@ use crate::app::App;
 impl App {
     pub fn notify_send(&self, message: String) {
         if let Some(mut home) = home_dir() {
-            let icon_file = if cfg!(target_os = "linux") {
-                home.push(".local/share/pomotimer/peach.svg");
-                home
-            } else {
-                home.push("AppData\\Local\\pomotimer\\icon\\peach.svg");
-                home
-            };
+            home.push(".local/share/pomotimer/icon/peach.svg");
+            let icon_file = home;
 
             if let Ok(_) = Notification::new()
                 .summary("Pomotimer")
