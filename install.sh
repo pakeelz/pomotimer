@@ -42,7 +42,7 @@ SHARE_DIR="$HOME/.local/share/pomotimer/icon/"
 mkdir -p $SHARE_DIR
 curl -o "$TMP_DIR/peach.svg" https://raw.githubusercontent.com/pakeelz/shlt/main/assets/peach.svg
 
-mv "$TMP_DIR/peach/svg" "$SHARE_DIR/peach/svg"
+mv "$TMP_DIR/peach.svg" "$SHARE_DIR/peach.svg"
 
 # Cleanup
 rm -rf "$TMP_DIR"
