@@ -1,6 +1,8 @@
 # ⏲️ Pomotimer
 
 > Simple CLI apps based on rust for pomodoro timer
+
+![fig 1](https://github.com/pakeelz/pomotimer/blob/main/assets/ss1.png?raw=true)
 ---
 
 ## ✨ Fitur
@@ -11,7 +13,8 @@
 
 ## 💻 Usage
 
-* Just type `pomotimer` on the terminal and be productive.
+* Just type `pomotimer` on the terminal and be productive, it will set timer 
+30 minutes and break 10 minutes
 * For spesific usage use `pomotimer 50 10`, it will set 50 minutes timer and 10 minutes break.
 
 ## 🚀 Instalasi
