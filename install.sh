@@ -13,18 +13,11 @@ fi
 
 # Take URL newest releases
 echo "==> Find latest releases..."
-DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" |
-  grep "browser_download_url.*pomotimer-linux-x86_64.tar.gz" |
-  cut -d '"' -f 4)
-
-if [ -z "$DOWNLOAD_URL" ]; then
-  echo "Error: Failed to find release files."
-  exit 1
-fi
+DOWNLOAD_URL="https://github.com/$REPO/releases/latest/download/pomotimer-linux-x86_64.tar.gz"
 
 # Download and tar to temp dir
 TMP_DIR=$(mktemp -d)
-echo "==> Mengunduh binary shlt..."
+echo "==> Downloading binary..."
 curl -sL "$DOWNLOAD_URL" | tar -xz -C "$TMP_DIR"
 
 # Move binary to /usr/local/bin/
@@ -36,34 +29,39 @@ sudo chmod +x "$INSTALL_DIR/pomotimer"
 rm -rf "$TMP_DIR"
 
 # Create share dir and tmp dir
+SHARE_DIR="$HOME/.local/share/pomotimer/icon"
+SHARE_DIR_SOUNDS="$HOME/.local/share/pomotimer/sounds/"
+mkdir -p "$SHARE_DIR"
+
 TMP_DIR=$(mktemp -d)
-SHARE_DIR="$HOME/.local/share/pomotimer/icon/"
+curl -sLo "$TMP_DIR/timer.png" https://raw.githubusercontent.com/pakeelz/shlt/main/assets/timer.png
+mv "$TMP_DIR/timer.png" "$SHARE_DIR/timer.png"
 
-mkdir -p $SHARE_DIR
-curl -o "$TMP_DIR/peach.svg" https://raw.githubusercontent.com/pakeelz/shlt/main/assets/peach.svg
+curl -sLo "$TMP_DIR/bell.mp3" https://raw.githubusercontent.com/pakeelz/shlt/main/assets/bell.mp3
+mv "$TMP_DIR/bell.mp3" "$SHARE_DIR_SOUNDS/bell.mp3"
 
-mv "$TMP_DIR/peach.svg" "$SHARE_DIR/peach.svg"
+curl -sLo "$TMP_DIR/clink.mp3" https://raw.githubusercontent.com/pakeelz/shlt/main/assets/clink.mp3
+mv "$TMP_DIR/clink.mp3" "$SHARE_DIR_SOUNDS/clink.mp3"
 
 # Cleanup
 rm -rf "$TMP_DIR"
 
 # Create .desktop file
-applicationsDir="$HOME/.local/share/applications/"
-mkdir -p "$applicationsDir"
+APPLICATIONS_DIR="$HOME/.local/share/applications"
+mkdir -p "$APPLICATIONS_DIR"
+POMOTIMER_DESKTOP="$APPLICATIONS_DIR/pomotimer.desktop"
 
-pomotimerApp="$applicationsDir/pomotimer.desktop"
-
-cat <<EOF >$pomotimerApp
+cat <<EOF >"$POMOTIMER_DESKTOP"
 [Desktop Entry]
 Type=Application
 Name=Pomotimer
 Comment=Pomodoro Timer On Terminal
 Exec=/usr/local/bin/pomotimer
-Icon=$HOME/.local/share/pomotimer/icon/peach.svg
+Icon=$HOME/.local/share/pomotimer/icon/timer.png
 Terminal=true
 Categories=Utility;
 EOF
 
-update-desktop-database "$HOME/.local/share/applications/"
+update-desktop-database "$APPLICATIONS_DIR"
 
-echo "==> Installation Done. Give starts on https://github.com/pakeelz/pomotimer if you like this apps"
+echo "==> Installation Done. Give a star on https://github.com/$REPO if you like this app."
