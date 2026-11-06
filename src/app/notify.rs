@@ -48,5 +48,5 @@ fn play(path_sound: PathBuf) -> anyhow::Result<()> {
 
 #[test]
 fn test_name() {
-    Command::new("zzz").spawn().unwrap();
+    play("/home/pakel/.local/share/pomotimer/sounds/clink.mp3".into()).unwrap();
 }
