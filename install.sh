@@ -30,7 +30,7 @@ rm -rf "$TMP_DIR"
 
 # Create share dir and tmp dir
 SHARE_DIR="$HOME/.local/share/pomotimer/icon"
-SHARE_DIR_SOUNDS="$HOME/.local/share/pomotimer/sounds/"
+SHARE_DIR_SOUNDS="$HOME/.local/share/pomotimer/sounds"
 mkdir -p "$SHARE_DIR"
 
 TMP_DIR=$(mktemp -d)
