@@ -7,7 +7,7 @@ impl App {
         match self.state {
             State::Timer => {
                 if self.need_notify {
-                    self.notify_send(format!("Timer set in {} minutes", self.timer / 60));
+                    self.notify_send_cmd(format!("Timer set in {} minutes", self.timer / 60));
                     self.need_notify = false;
                 }
                 if self.timer == 0 {
@@ -19,7 +19,7 @@ impl App {
             }
             State::Breaks => {
                 if self.need_notify {
-                    self.notify_send(format!(
+                    self.notify_send_cmd(format!(
                         "Let's take a break for {} minutes",
                         self.breaks / 60
                     ));
