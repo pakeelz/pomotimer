@@ -32,15 +32,16 @@ rm -rf "$TMP_DIR"
 SHARE_DIR="$HOME/.local/share/pomotimer/icon"
 SHARE_DIR_SOUNDS="$HOME/.local/share/pomotimer/sounds"
 mkdir -p "$SHARE_DIR"
+mkdir -p "$SHARE_DIR_SOUNDS"
 
 TMP_DIR=$(mktemp -d)
-curl -sLo "$TMP_DIR/timer.png" https://raw.githubusercontent.com/pakeelz/shlt/main/assets/timer.png
+curl -sLo "$TMP_DIR/timer.png" https://raw.githubusercontent.com/pakeelz/pomotimer/main/assets/timer.png
 mv "$TMP_DIR/timer.png" "$SHARE_DIR/timer.png"
 
-curl -sLo "$TMP_DIR/bell.mp3" https://raw.githubusercontent.com/pakeelz/shlt/main/assets/bell.mp3
+curl -sLo "$TMP_DIR/bell.mp3" https://raw.githubusercontent.com/pakeelz/pomotimer/main/assets/bell.mp3
 mv "$TMP_DIR/bell.mp3" "$SHARE_DIR_SOUNDS/bell.mp3"
 
-curl -sLo "$TMP_DIR/clink.mp3" https://raw.githubusercontent.com/pakeelz/shlt/main/assets/clink.mp3
+curl -sLo "$TMP_DIR/clink.mp3" https://raw.githubusercontent.com/pakeelz/pomotimer/main/assets/clink.mp3
 mv "$TMP_DIR/clink.mp3" "$SHARE_DIR_SOUNDS/clink.mp3"
 
 # Cleanup
