@@ -9,6 +9,9 @@ pub struct Cli {
     /// Describe break in minutes
     #[arg(default_value_t = 10)]
     pub breaks: i32,
+
+    #[arg(hide = true, default_value_t = false, long)]
+    pub debug: bool,
 }
 
 impl Cli {

@@ -2,6 +2,7 @@ use ratatui::{
     DefaultTerminal,
     layout::{Constraint, Direction, Layout, Rect},
     style::{Color, Stylize},
+    text::Line,
     widgets::{Block, BorderType, Borders, Paragraph},
 };
 
@@ -12,14 +13,14 @@ use crate::app::{
 
 impl App {
     pub fn render_ptmr(&self, terminal: &mut DefaultTerminal) -> anyhow::Result<()> {
-        let (cols, rows) = crossterm::terminal::size().unwrap();
+        let (cols, rows) = crossterm::terminal::size()?;
         terminal.draw(|frame| {
             let (headers, timer) = match self.state {
                 State::Timer => (" Timer ", app::format_timer(self.timer)),
                 State::Breaks => (" Break ", app::format_timer(self.breaks)),
             };
 
-            let (width, height) = (51, 10);
+            let (width, height) = (51, 11);
             let x = cols.saturating_sub(width) / 2;
             let y = rows.saturating_sub(height) / 2;
 
@@ -34,7 +35,7 @@ impl App {
                 .constraints([
                     Constraint::Length(1),
                     Constraint::Fill(1),
-                    Constraint::Length(1),
+                    Constraint::Length(2),
                 ])
                 .areas(body);
 
@@ -57,7 +58,15 @@ impl App {
                 )
                 .centered();
 
-            let footer_content = Paragraph::new("Press q to give up").centered().red().bold();
+            let footer_content_text = match self.state {
+                State::Timer => vec![Line::from("Press q to give up")],
+                State::Breaks => vec![
+                    Line::from("Press q to give up"),
+                    Line::from("Press Enter to skip break"),
+                ],
+            };
+
+            let footer_content = Paragraph::new(footer_content_text).centered().red().bold();
 
             frame.render_widget(header_content, header);
             frame.render_widget(body_content, body);

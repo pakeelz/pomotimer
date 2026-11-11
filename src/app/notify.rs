@@ -26,6 +26,7 @@ impl App {
             .args([
                 "-a",
                 "Pomotimer",
+                "-e",
                 "-n",
                 "/home/pakel/.local/share/pomotimer/icon/timer.png",
                 summary,
@@ -33,7 +34,7 @@ impl App {
             ])
             .spawn()
         {
-            play(sound_path).unwrap();
+            if let Ok(_) = play(sound_path) {}
         }
     }
 }
@@ -44,9 +45,4 @@ fn play(path_sound: PathBuf) -> anyhow::Result<()> {
         Command::new("pw-cat").args(["-p", path_sound]).spawn()?;
     }
     anyhow::Ok(())
-}
-
-#[test]
-fn test_name() {
-    play("/home/pakel/.local/share/pomotimer/sounds/clink.mp3".into()).unwrap();
 }
