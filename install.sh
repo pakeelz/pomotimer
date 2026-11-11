@@ -38,6 +38,9 @@ TMP_DIR=$(mktemp -d)
 curl -sLo "$TMP_DIR/timer.png" https://raw.githubusercontent.com/pakeelz/pomotimer/main/assets/timer.png
 mv "$TMP_DIR/timer.png" "$SHARE_DIR/timer.png"
 
+curl -sLo "$TMP_DIR/breaks.png" https://raw.githubusercontent.com/pakeelz/pomotimer/main/assets/breaks.png
+mv "TMP_DIR/breaks.png" "$SHARE_DIR/breaks.png"
+
 curl -sLo "$TMP_DIR/bell.mp3" https://raw.githubusercontent.com/pakeelz/pomotimer/main/assets/bell.mp3
 mv "$TMP_DIR/bell.mp3" "$SHARE_DIR_SOUNDS/bell.mp3"
 
