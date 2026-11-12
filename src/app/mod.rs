@@ -47,7 +47,6 @@ impl App {
         }
     }
 
-    #[cfg(debug_assertions)]
     pub fn debug_mode() -> Self {
         let timer = 15;
         let breaks = 15;
