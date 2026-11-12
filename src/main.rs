@@ -12,6 +12,8 @@ async fn main() {
     let cli = cli::Cli::parse();
     cli.validate_arguments();
 
+    setup::setup().await;
+
     let (tx, mut rx) = tokio::sync::mpsc::unbounded_channel();
 
     let mut app = if !cli.debug {

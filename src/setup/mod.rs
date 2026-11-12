@@ -9,8 +9,9 @@ mod sounds;
 
 pub async fn setup() {
     let home_dir = home_dir().unwrap_or_else(|| PathBuf::from("."));
-    handle_sound_dir(home_dir.clone()).await;
-    handle_icon_dir(home_dir).await;
+    // Debug Soon
+    if let Err(_e) = handle_sound_dir(home_dir.clone()).await {}
+    if let Err(_e) = handle_icon_dir(home_dir.clone()).await {}
 }
 
 async fn download_assets(url: &str, output_path: &PathBuf) -> anyhow::Result<()> {
