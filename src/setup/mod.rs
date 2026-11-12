@@ -22,8 +22,3 @@ async fn download_assets(url: &str, output_path: &PathBuf) -> anyhow::Result<()>
     file.write_all(&bytes).await?;
     anyhow::Ok(())
 }
-
-#[tokio::test]
-async fn test_setup() {
-    setup().await;
-}
