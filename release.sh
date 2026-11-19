@@ -12,6 +12,7 @@ if [ -z "$release_version" ] && [ -z "$title" ] && [ -z "$message"]; then
 fi
 
 if [ -n "$(which gh)" ]; then
+  cargo build --release
   cp ./target/release/pomotimer .
   tar -czvf pomotimer-linux-x86_64.tar.gz pomotimer
   gh release create "$release_version" --title "$title" --notes "$message" pomotimer-linux-x86_64.tar.gz
