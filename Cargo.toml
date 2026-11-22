@@ -1,6 +1,6 @@
 [package]
 name = "pomotimer"
-version = "0.1.0"
+version = "0.0.5"
 edition = "2024"
 
 [dependencies]
@@ -12,9 +12,10 @@ gag = "1.0.0"
 gtk = "0.18.0"
 image = "0.25.10"
 infer = "0.22.0"
+mde = "0.1.2"
 ratatui = "0.30.2"
 reqwest = "0.13.5"
-tokio = { version = "1.54.1", features = ["full"] }
+tokio = { version = "1.54.1", features = ["rt", "macros", "rt-multi-thread", "fs"] }
 tray-icon = { version = "0.26.1" }
 
 [profile.release]
