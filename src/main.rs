@@ -7,12 +7,12 @@ mod setup;
 
 #[tokio::main]
 async fn main() {
+    setup::setup().await;
+
     // Supress error message in tui
     let _gag = gag::Gag::stderr().unwrap();
     let cli = cli::Cli::parse();
     cli.validate_arguments();
-
-    setup::setup().await;
 
     let (tx, mut rx) = tokio::sync::mpsc::unbounded_channel();
 

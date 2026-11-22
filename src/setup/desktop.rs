@@ -1,4 +1,4 @@
-use std::path::PathBuf;
+use std::{path::PathBuf, time::Duration};
 
 use mde::{DesktopCategories, DesktopEntry, DesktopEntryFile, Icon};
 
@@ -9,6 +9,8 @@ pub fn handle_desktop(home: PathBuf) -> anyhow::Result<()> {
     let mut icon_file = home.clone();
     icon_file.push(".local/share/pomotimer/icon/timer.png");
 
+    println!("Creating desktop .entry in {:?}", desktop_entry_file);
+    std::thread::sleep(Duration::from_millis(500));
     if !desktop_entry_file.exists() {
         let entry = DesktopEntry::new("Pomotimer")
             .types(mde::Types::APPLICATION)

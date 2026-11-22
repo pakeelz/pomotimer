@@ -11,8 +11,12 @@ mod sounds;
 pub async fn setup() {
     let home_dir = home_dir().unwrap_or_else(|| PathBuf::from("."));
     // Debug Soon
-    if let Err(_e) = handle_sound_dir(home_dir.clone()).await {}
-    if let Err(_e) = handle_icon_dir(home_dir.clone()).await {}
+    if let Err(_e) = handle_sound_dir(home_dir.clone()).await {
+        eprintln!("{:?}", _e);
+    }
+    if let Err(_e) = handle_icon_dir(home_dir.clone()).await {
+        eprintln!("{:?}", _e);
+    }
     if let Err(_e) = handle_desktop(home_dir) {}
 }
 

@@ -6,6 +6,11 @@ pub async fn handle_sound_dir(home: PathBuf) -> anyhow::Result<()> {
     let mut sound_dir = home;
     sound_dir.push(".local/share/pomotimer/sounds");
 
+    if !sound_dir.exists() {
+        println!("Creating dir: {:?}", sound_dir);
+        tokio::fs::create_dir_all(&sound_dir).await?;
+    }
+
     // Check bell.mp3
     sound_dir.push("bell.mp3");
 

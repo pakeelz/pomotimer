@@ -6,6 +6,11 @@ pub async fn handle_icon_dir(home: PathBuf) -> anyhow::Result<()> {
     let mut icon_dir = home;
     icon_dir.push(".local/share/pomotimer/icon");
 
+    if !icon_dir.exists() {
+        println!("Creating dir: {:?}", &icon_dir);
+        tokio::fs::create_dir_all(&icon_dir).await?;
+    }
+
     // Check timer.png
     icon_dir.push("timer.png");
 
