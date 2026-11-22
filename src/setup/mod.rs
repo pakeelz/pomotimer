@@ -1,9 +1,10 @@
 #![allow(dead_code)]
 
-use crate::setup::{icons::handle_icon_dir, sounds::handle_sound_dir};
+use crate::setup::{desktop::handle_desktop, icons::handle_icon_dir, sounds::handle_sound_dir};
 use std::{env::home_dir, path::PathBuf};
 use tokio::{fs::File, io::AsyncWriteExt};
 
+mod desktop;
 mod icons;
 mod sounds;
 
@@ -12,6 +13,7 @@ pub async fn setup() {
     // Debug Soon
     if let Err(_e) = handle_sound_dir(home_dir.clone()).await {}
     if let Err(_e) = handle_icon_dir(home_dir.clone()).await {}
+    if let Err(_e) = handle_desktop(home_dir) {}
 }
 
 async fn download_assets(url: &str, output_path: &PathBuf) -> anyhow::Result<()> {
