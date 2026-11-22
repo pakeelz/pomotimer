@@ -9,9 +9,9 @@ pub fn handle_desktop(home: PathBuf) -> anyhow::Result<()> {
     let mut icon_file = home.clone();
     icon_file.push(".local/share/pomotimer/icon/timer.png");
 
-    println!("Creating desktop .entry in {:?}", desktop_entry_file);
-    std::thread::sleep(Duration::from_millis(500));
     if !desktop_entry_file.exists() {
+        println!("Creating desktop .entry in {:?}", desktop_entry_file);
+        std::thread::sleep(Duration::from_millis(500));
         let entry = DesktopEntry::new("Pomotimer")
             .types(mde::Types::APPLICATION)
             .comment("Pomodoro Timer on Terminal")
