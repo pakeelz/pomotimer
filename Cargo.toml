@@ -2,6 +2,12 @@
 name = "pomotimer"
 version = "0.0.5"
 edition = "2024"
+license = "MIT"
+description = "Pomodoro Timer on CLI"
+readme = "README.md"
+repository = "https://github.com/pakeelz/pomotimer"
+keywords = ["tui", "terminal", "linux", "ratatui", "pomodoro"]
+categories = ["Command line utilities", "Utility"]
 
 [dependencies]
 anyhow = "1.0.104"
