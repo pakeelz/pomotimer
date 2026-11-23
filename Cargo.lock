@@ -2584,7 +2584,7 @@ dependencies = [
 
 [[package]]
 name = "pomotimer"
-version = "0.0.7"
+version = "0.0.8"
 dependencies = [
  "anyhow",
  "clap",
@@ -2599,6 +2599,7 @@ dependencies = [
  "reqwest",
  "tokio",
  "tray-icon",
+ "which",
 ]
 
 [[package]]
@@ -4324,6 +4325,15 @@ dependencies = [
  "lazy_static",
  "serde",
  "wezterm-dynamic",
+]
+
+[[package]]
+name = "which"
+version = "8.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bae2f2b2b816647a1cab1acc91f5bd20812d53cb344382635ec2181940c8034f"
+dependencies = [
+ "libc",
 ]
 
 [[package]]

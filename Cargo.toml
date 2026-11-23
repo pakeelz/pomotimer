@@ -1,6 +1,6 @@
 [package]
 name = "pomotimer"
-version = "0.0.7"
+version = "0.0.8"
 edition = "2024"
 license = "MIT"
 description = "Pomodoro Timer on CLI"
@@ -23,6 +23,7 @@ ratatui = "0.30.2"
 reqwest = "0.13.5"
 tokio = { version = "1.54.1", features = ["rt", "macros", "rt-multi-thread", "fs"] }
 tray-icon = { version = "0.26.1" }
+which = "8.0.6"
 
 [profile.release]
 opt-level = 3
